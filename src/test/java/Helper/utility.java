@@ -12,9 +12,14 @@ public class utility {
 
     public static void startDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--remote-allow-origins=*");
+        options.addArguments(
+                "--headless",
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--remote-allow-origins=*",
+                "--disable-gpu", // (opsional) menonaktifkan GPU, sering digunakan di CI/CD
+                "--disable-software-rasterizer" // (opsional) menonaktifkan rasterizer perangkat lunak
+        );
         WebDriverManager.chromedriver().setup();
 
         if (driver == null) {
